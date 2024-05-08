@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house.housemanager.mapper.RepairMapper">
+  <resultMap id="BaseResultMap" type="com.house.housemanager.model.Repair">
+    <id column="repair_id" jdbcType="VARCHAR" property="repairId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="repair_goods" jdbcType="VARCHAR" property="repairGoods" />
+    <result column="repair_flag" jdbcType="BIT" property="repairFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    repair_id, user_id, house_id, repair_goods, repair_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.house.housemanager.model.RepairExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repair
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from repair
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from repair
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.house.housemanager.model.RepairExample">
+    delete from repair
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.house.housemanager.model.Repair">
+    insert into repair (repair_id, user_id, house_id, 
+      repair_goods, repair_flag)
+    values (#{repairId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, 
+      #{repairGoods,jdbcType=VARCHAR}, #{repairFlag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house.housemanager.model.Repair">
+    insert into repair
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="repairId != null">
+        repair_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="repairGoods != null">
+        repair_goods,
+      </if>
+      <if test="repairFlag != null">
+        repair_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="repairId != null">
+        #{repairId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="repairGoods != null">
+        #{repairGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="repairFlag != null">
+        #{repairFlag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.house.housemanager.model.RepairExample" resultType="java.lang.Long">
+    select count(*) from repair
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update repair
+    <set>
+      <if test="record.repairId != null">
+        repair_id = #{record.repairId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.houseId != null">
+        house_id = #{record.houseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.repairGoods != null">
+        repair_goods = #{record.repairGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repairFlag != null">
+        repair_flag = #{record.repairFlag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update repair
+    set repair_id = #{record.repairId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      house_id = #{record.houseId,jdbcType=INTEGER},
+      repair_goods = #{record.repairGoods,jdbcType=VARCHAR},
+      repair_flag = #{record.repairFlag,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.house.housemanager.model.Repair">
+    update repair
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="repairGoods != null">
+        repair_goods = #{repairGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="repairFlag != null">
+        repair_flag = #{repairFlag,jdbcType=BIT},
+      </if>
+    </set>
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.house.housemanager.model.Repair">
+    update repair
+    set user_id = #{userId,jdbcType=INTEGER},
+      house_id = #{houseId,jdbcType=INTEGER},
+      repair_goods = #{repairGoods,jdbcType=VARCHAR},
+      repair_flag = #{repairFlag,jdbcType=BIT}
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </update>
+</mapper>

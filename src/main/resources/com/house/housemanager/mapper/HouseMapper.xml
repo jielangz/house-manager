@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house.housemanager.mapper.HouseMapper">
+  <resultMap id="BaseResultMap" type="com.house.housemanager.model.House">
+    <id column="house_id" jdbcType="VARCHAR" property="houseId" />
+    <result column="houser_name" jdbcType="VARCHAR" property="houserName" />
+    <result column="house_cast" jdbcType="INTEGER" property="houseCast" />
+    <result column="rent_flag" jdbcType="BIT" property="rentFlag" />
+    <result column="house_description" jdbcType="VARCHAR" property="houseDescription" />
+    <result column="rent_begin_date" jdbcType="DATE" property="rentBeginDate" />
+    <result column="rent_end_date" jdbcType="DATE" property="rentEndDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    house_id, houser_name, house_cast, rent_flag, house_description, rent_begin_date, 
+    rent_end_date
+  </sql>
+  <select id="selectByExample" parameterType="com.house.housemanager.model.HouseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from house
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from house
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.house.housemanager.model.HouseExample">
+    delete from house
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.house.housemanager.model.House">
+    insert into house (house_id, houser_name, house_cast, 
+      rent_flag, house_description, rent_begin_date, 
+      rent_end_date)
+    values (#{houseId,jdbcType=VARCHAR}, #{houserName,jdbcType=VARCHAR}, #{houseCast,jdbcType=INTEGER}, 
+      #{rentFlag,jdbcType=BIT}, #{houseDescription,jdbcType=VARCHAR}, #{rentBeginDate,jdbcType=DATE}, 
+      #{rentEndDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.house.housemanager.model.House">
+    insert into house
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houserName != null">
+        houser_name,
+      </if>
+      <if test="houseCast != null">
+        house_cast,
+      </if>
+      <if test="rentFlag != null">
+        rent_flag,
+      </if>
+      <if test="houseDescription != null">
+        house_description,
+      </if>
+      <if test="rentBeginDate != null">
+        rent_begin_date,
+      </if>
+      <if test="rentEndDate != null">
+        rent_end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="houserName != null">
+        #{houserName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCast != null">
+        #{houseCast,jdbcType=INTEGER},
+      </if>
+      <if test="rentFlag != null">
+        #{rentFlag,jdbcType=BIT},
+      </if>
+      <if test="houseDescription != null">
+        #{houseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="rentBeginDate != null">
+        #{rentBeginDate,jdbcType=DATE},
+      </if>
+      <if test="rentEndDate != null">
+        #{rentEndDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.house.housemanager.model.HouseExample" resultType="java.lang.Long">
+    select count(*) from house
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update house
+    <set>
+      <if test="record.houseId != null">
+        house_id = #{record.houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houserName != null">
+        houser_name = #{record.houserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseCast != null">
+        house_cast = #{record.houseCast,jdbcType=INTEGER},
+      </if>
+      <if test="record.rentFlag != null">
+        rent_flag = #{record.rentFlag,jdbcType=BIT},
+      </if>
+      <if test="record.houseDescription != null">
+        house_description = #{record.houseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentBeginDate != null">
+        rent_begin_date = #{record.rentBeginDate,jdbcType=DATE},
+      </if>
+      <if test="record.rentEndDate != null">
+        rent_end_date = #{record.rentEndDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update house
+    set house_id = #{record.houseId,jdbcType=VARCHAR},
+      houser_name = #{record.houserName,jdbcType=VARCHAR},
+      house_cast = #{record.houseCast,jdbcType=INTEGER},
+      rent_flag = #{record.rentFlag,jdbcType=BIT},
+      house_description = #{record.houseDescription,jdbcType=VARCHAR},
+      rent_begin_date = #{record.rentBeginDate,jdbcType=DATE},
+      rent_end_date = #{record.rentEndDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.house.housemanager.model.House">
+    update house
+    <set>
+      <if test="houserName != null">
+        houser_name = #{houserName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCast != null">
+        house_cast = #{houseCast,jdbcType=INTEGER},
+      </if>
+      <if test="rentFlag != null">
+        rent_flag = #{rentFlag,jdbcType=BIT},
+      </if>
+      <if test="houseDescription != null">
+        house_description = #{houseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="rentBeginDate != null">
+        rent_begin_date = #{rentBeginDate,jdbcType=DATE},
+      </if>
+      <if test="rentEndDate != null">
+        rent_end_date = #{rentEndDate,jdbcType=DATE},
+      </if>
+    </set>
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.house.housemanager.model.House">
+    update house
+    set houser_name = #{houserName,jdbcType=VARCHAR},
+      house_cast = #{houseCast,jdbcType=INTEGER},
+      rent_flag = #{rentFlag,jdbcType=BIT},
+      house_description = #{houseDescription,jdbcType=VARCHAR},
+      rent_begin_date = #{rentBeginDate,jdbcType=DATE},
+      rent_end_date = #{rentEndDate,jdbcType=DATE}
+    where house_id = #{houseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house.housemanager.mapper.UserRentMapper">
+  <resultMap id="BaseResultMap" type="com.house.housemanager.model.UserRent">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_identity_card" jdbcType="VARCHAR" property="userIdentityCard" />
+    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+    <result column="house_id" jdbcType="VARCHAR" property="houseId" />
+    <result column="house_cost" jdbcType="INTEGER" property="houseCost" />
+    <result column="rent_begin_date" jdbcType="DATE" property="rentBeginDate" />
+    <result column="rent_end_date" jdbcType="DATE" property="rentEndDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_phone, user_identity_card, user_sex, house_id, house_cost, 
+    rent_begin_date, rent_end_date
+  </sql>
+  <select id="selectByExample" parameterType="com.house.housemanager.model.UserRentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_rent
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_rent
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_rent
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.house.housemanager.model.UserRentExample">
+    delete from user_rent
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.house.housemanager.model.UserRent">
+    insert into user_rent (user_id, user_name, user_phone, 
+      user_identity_card, user_sex, house_id, 
+      house_cost, rent_begin_date, rent_end_date
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userIdentityCard,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{houseId,jdbcType=VARCHAR}, 
+      #{houseCost,jdbcType=INTEGER}, #{rentBeginDate,jdbcType=DATE}, #{rentEndDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.house.housemanager.model.UserRent">
+    insert into user_rent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="userIdentityCard != null">
+        user_identity_card,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseCost != null">
+        house_cost,
+      </if>
+      <if test="rentBeginDate != null">
+        rent_begin_date,
+      </if>
+      <if test="rentEndDate != null">
+        rent_end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdentityCard != null">
+        #{userIdentityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCost != null">
+        #{houseCost,jdbcType=INTEGER},
+      </if>
+      <if test="rentBeginDate != null">
+        #{rentBeginDate,jdbcType=DATE},
+      </if>
+      <if test="rentEndDate != null">
+        #{rentEndDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.house.housemanager.model.UserRentExample" resultType="java.lang.Long">
+    select count(*) from user_rent
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_rent
+    <set>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPhone != null">
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userIdentityCard != null">
+        user_identity_card = #{record.userIdentityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userSex != null">
+        user_sex = #{record.userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseId != null">
+        house_id = #{record.houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseCost != null">
+        house_cost = #{record.houseCost,jdbcType=INTEGER},
+      </if>
+      <if test="record.rentBeginDate != null">
+        rent_begin_date = #{record.rentBeginDate,jdbcType=DATE},
+      </if>
+      <if test="record.rentEndDate != null">
+        rent_end_date = #{record.rentEndDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_rent
+    set user_id = #{record.userId,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      user_identity_card = #{record.userIdentityCard,jdbcType=VARCHAR},
+      user_sex = #{record.userSex,jdbcType=VARCHAR},
+      house_id = #{record.houseId,jdbcType=VARCHAR},
+      house_cost = #{record.houseCost,jdbcType=INTEGER},
+      rent_begin_date = #{record.rentBeginDate,jdbcType=DATE},
+      rent_end_date = #{record.rentEndDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.house.housemanager.model.UserRent">
+    update user_rent
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdentityCard != null">
+        user_identity_card = #{userIdentityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCost != null">
+        house_cost = #{houseCost,jdbcType=INTEGER},
+      </if>
+      <if test="rentBeginDate != null">
+        rent_begin_date = #{rentBeginDate,jdbcType=DATE},
+      </if>
+      <if test="rentEndDate != null">
+        rent_end_date = #{rentEndDate,jdbcType=DATE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.house.housemanager.model.UserRent">
+    update user_rent
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_identity_card = #{userIdentityCard,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      house_id = #{houseId,jdbcType=VARCHAR},
+      house_cost = #{houseCost,jdbcType=INTEGER},
+      rent_begin_date = #{rentBeginDate,jdbcType=DATE},
+      rent_end_date = #{rentEndDate,jdbcType=DATE}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>
