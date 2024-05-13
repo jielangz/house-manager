@@ -1,5 +1,6 @@
 package com.house.housemanager.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -352,52 +353,52 @@ public class PaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyEqualTo(Integer value) {
+        public Criteria andPayMoneyEqualTo(BigDecimal value) {
             addCriterion("pay_money =", value, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyNotEqualTo(Integer value) {
+        public Criteria andPayMoneyNotEqualTo(BigDecimal value) {
             addCriterion("pay_money <>", value, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyGreaterThan(Integer value) {
+        public Criteria andPayMoneyGreaterThan(BigDecimal value) {
             addCriterion("pay_money >", value, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPayMoneyGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("pay_money >=", value, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyLessThan(Integer value) {
+        public Criteria andPayMoneyLessThan(BigDecimal value) {
             addCriterion("pay_money <", value, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyLessThanOrEqualTo(Integer value) {
+        public Criteria andPayMoneyLessThanOrEqualTo(BigDecimal value) {
             addCriterion("pay_money <=", value, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyIn(List<Integer> values) {
+        public Criteria andPayMoneyIn(List<BigDecimal> values) {
             addCriterion("pay_money in", values, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyNotIn(List<Integer> values) {
+        public Criteria andPayMoneyNotIn(List<BigDecimal> values) {
             addCriterion("pay_money not in", values, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyBetween(Integer value1, Integer value2) {
+        public Criteria andPayMoneyBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("pay_money between", value1, value2, "payMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPayMoneyNotBetween(Integer value1, Integer value2) {
+        public Criteria andPayMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("pay_money not between", value1, value2, "payMoney");
             return (Criteria) this;
         }
@@ -412,52 +413,52 @@ public class PaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastEqualTo(Integer value) {
+        public Criteria andHouseCastEqualTo(BigDecimal value) {
             addCriterion("house_cast =", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastNotEqualTo(Integer value) {
+        public Criteria andHouseCastNotEqualTo(BigDecimal value) {
             addCriterion("house_cast <>", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastGreaterThan(Integer value) {
+        public Criteria andHouseCastGreaterThan(BigDecimal value) {
             addCriterion("house_cast >", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastGreaterThanOrEqualTo(Integer value) {
+        public Criteria andHouseCastGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("house_cast >=", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastLessThan(Integer value) {
+        public Criteria andHouseCastLessThan(BigDecimal value) {
             addCriterion("house_cast <", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastLessThanOrEqualTo(Integer value) {
+        public Criteria andHouseCastLessThanOrEqualTo(BigDecimal value) {
             addCriterion("house_cast <=", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastIn(List<Integer> values) {
+        public Criteria andHouseCastIn(List<BigDecimal> values) {
             addCriterion("house_cast in", values, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastNotIn(List<Integer> values) {
+        public Criteria andHouseCastNotIn(List<BigDecimal> values) {
             addCriterion("house_cast not in", values, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastBetween(Integer value1, Integer value2) {
+        public Criteria andHouseCastBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("house_cast between", value1, value2, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastNotBetween(Integer value1, Integer value2) {
+        public Criteria andHouseCastNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("house_cast not between", value1, value2, "houseCast");
             return (Criteria) this;
         }

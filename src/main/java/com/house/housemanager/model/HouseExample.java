@@ -1,5 +1,6 @@
 package com.house.housemanager.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -282,52 +283,52 @@ public class HouseExample {
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastEqualTo(Integer value) {
+        public Criteria andHouseCastEqualTo(BigDecimal value) {
             addCriterion("house_cast =", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastNotEqualTo(Integer value) {
+        public Criteria andHouseCastNotEqualTo(BigDecimal value) {
             addCriterion("house_cast <>", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastGreaterThan(Integer value) {
+        public Criteria andHouseCastGreaterThan(BigDecimal value) {
             addCriterion("house_cast >", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastGreaterThanOrEqualTo(Integer value) {
+        public Criteria andHouseCastGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("house_cast >=", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastLessThan(Integer value) {
+        public Criteria andHouseCastLessThan(BigDecimal value) {
             addCriterion("house_cast <", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastLessThanOrEqualTo(Integer value) {
+        public Criteria andHouseCastLessThanOrEqualTo(BigDecimal value) {
             addCriterion("house_cast <=", value, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastIn(List<Integer> values) {
+        public Criteria andHouseCastIn(List<BigDecimal> values) {
             addCriterion("house_cast in", values, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastNotIn(List<Integer> values) {
+        public Criteria andHouseCastNotIn(List<BigDecimal> values) {
             addCriterion("house_cast not in", values, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastBetween(Integer value1, Integer value2) {
+        public Criteria andHouseCastBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("house_cast between", value1, value2, "houseCast");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCastNotBetween(Integer value1, Integer value2) {
+        public Criteria andHouseCastNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("house_cast not between", value1, value2, "houseCast");
             return (Criteria) this;
         }

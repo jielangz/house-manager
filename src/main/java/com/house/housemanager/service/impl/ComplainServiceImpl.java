@@ -7,6 +7,8 @@ import com.house.housemanager.mapper.UserRentMapper;
 import com.house.housemanager.model.*;
 import com.house.housemanager.service.ComplainService;
 import com.house.housemanager.vo.request.GetComplainVo;
+import com.house.housemanager.vo.request.GetUserComplainVo;
+import com.house.housemanager.vo.request.InsertComplainVo;
 import com.house.housemanager.vo.response.ComplainVo;
 import com.house.housemanager.vo.response.Result;
 import org.springframework.beans.BeanUtils;
@@ -15,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -64,9 +63,33 @@ public class ComplainServiceImpl implements ComplainService {
     }
     
     @Override
-    public Result insertComplain(Complain complain) {
+    public Result insertComplain(InsertComplainVo vo) {
+        Complain complain = new Complain();
         complain.setComplainId(UUID.randomUUID().toString().replace("-", ""));
+        complain.setComplainDate(new Date());
+        complain.setComplainTontent(vo.getComplainTontent());
+        complain.setUserId(vo.getUserRent().getUserId());
+        complain.setCryptonymFlag(vo.getCryptonymFlag());
         complainMapper.insertSelective(complain);
         return Result.success();
+    }
+    
+    @Override
+    public PageInfo getUserComplain(GetUserComplainVo vo) {
+        PageHelper.startPage(vo.getPageNum(), vo.getPageSize());
+        ComplainExample complainExample = new ComplainExample();
+        complainExample.createCriteria().andUserIdEqualTo(vo.getUserRent().getUserId());
+        List<Complain> complains = complainMapper.selectByExample(complainExample);
+    
+        return PageInfo.of(complains);
+    }
+    
+    @Override
+    public Result deleteComplain(String complainId) {
+        int i = complainMapper.deleteByPrimaryKey(complainId);
+        if (i<=0){
+            return Result.error("取消失败");
+        }
+        return Result.success("取消成功");
     }
 }

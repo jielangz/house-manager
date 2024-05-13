@@ -1,5 +1,6 @@
 package com.house.housemanager.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class UserRent {
@@ -15,7 +16,7 @@ public class UserRent {
 
     private String houseId;
 
-    private Integer houseCost;
+    private BigDecimal houseCost;
 
     private Date rentBeginDate;
 
@@ -69,11 +70,11 @@ public class UserRent {
         this.houseId = houseId;
     }
 
-    public Integer getHouseCost() {
+    public BigDecimal getHouseCost() {
         return houseCost;
     }
 
-    public void setHouseCost(Integer houseCost) {
+    public void setHouseCost(BigDecimal houseCost) {
         this.houseCost = houseCost;
     }
 

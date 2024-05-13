@@ -8,6 +8,8 @@ import com.house.housemanager.mapper.UserRentMapper;
 import com.house.housemanager.model.*;
 import com.house.housemanager.service.RepairService;
 import com.house.housemanager.vo.request.GetRepairVo;
+import com.house.housemanager.vo.request.GetUserRepairVo;
+import com.house.housemanager.vo.request.InsertUserRepair;
 import com.house.housemanager.vo.response.RepairVo;
 import com.house.housemanager.vo.response.Result;
 import org.springframework.beans.BeanUtils;
@@ -67,8 +69,13 @@ public class RepairServiceImpl implements RepairService {
     }
     
     @Override
-    public Result insertRepair(Repair repair) {
+    public Result insertRepair(InsertUserRepair vo) {
+        Repair repair = new Repair();
         repair.setRepairId(UUID.randomUUID().toString().replace("-", ""));
+        repair.setRepairFlag(false);
+        repair.setRepairGoods(vo.getRepairGoods());
+        repair.setHouseId(vo.getUserRent().getHouseId());
+        repair.setUserId(vo.getUserRent().getUserId());
         repairMapper.insertSelective(repair);
         return Result.success();
     }
@@ -91,5 +98,38 @@ public class RepairServiceImpl implements RepairService {
         repair.setRepairFlag(true);
         repairMapper.updateByExampleSelective(repair,repairExample);
         return Result.success("成功修复");
+    }
+    
+    @Override
+    public PageInfo getUerRepair(GetUserRepairVo vo) {
+        PageHelper.startPage(vo.getPageNum(), vo.getPageSize());
+        RepairExample repairExample = new RepairExample();
+        repairExample.createCriteria().andUserIdEqualTo(vo.getUserRent().getUserId());
+        List<Repair> repairs = repairMapper.selectByExample(repairExample);
+        List<RepairVo> repairVoList = new ArrayList<>();
+        List<House> houses = new ArrayList<>();
+        if (!ObjectUtils.isEmpty(repairs)){
+            List<String> houseIdList = repairs.stream().map(Repair::getHouseId).collect(Collectors.toList());
+            HouseExample houseExample = new HouseExample();
+            houseExample.createCriteria().andHouseIdIn(houseIdList);
+            houses =  houseMapper.selectByExample(houseExample);
+        }
+        Map<String, String> houseMap = houses.stream().collect(Collectors.toMap(House::getHouseId, House::getHouserName));
+        for (Repair repair : repairs) {
+            RepairVo repairVo = new RepairVo();
+            BeanUtils.copyProperties(repair,repairVo);
+            repairVo.setHouseName(houseMap.get(repairVo.getHouseId()));
+            repairVoList.add(repairVo);
+        }
+        return PageInfo.of(repairVoList);
+    }
+    
+    @Override
+    public Result deleteRepair(String repairId) {
+        int i = repairMapper.deleteByPrimaryKey(repairId);
+        if (i<=0){
+            return Result.error("取消失败");
+        }
+        return Result.success("取消成功");
     }
 }

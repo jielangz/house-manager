@@ -1,5 +1,6 @@
 package com.house.housemanager.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class House {
@@ -7,7 +8,7 @@ public class House {
 
     private String houserName;
 
-    private Integer houseCast;
+    private BigDecimal houseCast;
 
     private Boolean rentFlag;
 
@@ -33,11 +34,11 @@ public class House {
         this.houserName = houserName;
     }
 
-    public Integer getHouseCast() {
+    public BigDecimal getHouseCast() {
         return houseCast;
     }
 
-    public void setHouseCast(Integer houseCast) {
+    public void setHouseCast(BigDecimal houseCast) {
         this.houseCast = houseCast;
     }
 

@@ -24,7 +24,7 @@ public class MessageController {
     @PostMapping("/sendCodeMsg")
     public Result sendMsg(@RequestBody SendCodeMsgVo vo) throws Exception {
         //获取手机号
-        String phone = vo.getPhone();
+        String phone = vo.getUserPhone();
         if(StringUtils.isNotEmpty(phone)){
             //生成随机的4位验证码
             String code = ValidateCodeUtils.generateValidateCode(4).toString();

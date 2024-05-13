@@ -2,23 +2,23 @@ package com.house.housemanager.vo.request;
 
 public class SendCodeMsgVo {
     
-    private String name;
+    private String userName;
     
-    private String phone;
+    private String userPhone;
     
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
     
-    public String getPhone() {
-        return phone;
+    public String getUserPhone() {
+        return userPhone;
     }
     
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 }

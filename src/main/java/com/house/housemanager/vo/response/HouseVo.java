@@ -2,6 +2,7 @@ package com.house.housemanager.vo.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class HouseVo {
@@ -10,7 +11,7 @@ public class HouseVo {
     
     private String houserName;
     
-    private Integer houseCast;
+    private BigDecimal houseCast;
     
     private Boolean rentFlag;
     
@@ -51,14 +52,6 @@ public class HouseVo {
     
     public void setHouserName(String houserName) {
         this.houserName = houserName;
-    }
-    
-    public Integer getHouseCast() {
-        return houseCast;
-    }
-    
-    public void setHouseCast(Integer houseCast) {
-        this.houseCast = houseCast;
     }
     
     public Boolean getRentFlag() {
@@ -155,5 +148,9 @@ public class HouseVo {
     
     public void setOtherDetails(String otherDetails) {
         this.otherDetails = otherDetails;
+    }
+    
+    public void setHouseCast(BigDecimal houseCast) {
+        this.houseCast = houseCast;
     }
 }

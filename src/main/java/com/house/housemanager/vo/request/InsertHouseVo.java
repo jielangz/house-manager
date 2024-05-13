@@ -1,5 +1,6 @@
 package com.house.housemanager.vo.request;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class InsertHouseVo {
@@ -8,7 +9,7 @@ public class InsertHouseVo {
     
     private String houserName;
     
-    private Integer houseCast;
+    private BigDecimal houseCast;
     
     private Boolean rentFlag;
     
@@ -48,11 +49,7 @@ public class InsertHouseVo {
         this.houserName = houserName;
     }
     
-    public Integer getHouseCast() {
-        return houseCast;
-    }
-    
-    public void setHouseCast(Integer houseCast) {
+    public void setHouseCast(BigDecimal houseCast) {
         this.houseCast = houseCast;
     }
     

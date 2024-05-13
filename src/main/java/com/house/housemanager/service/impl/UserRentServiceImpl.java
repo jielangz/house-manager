@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -126,12 +127,12 @@ public class UserRentServiceImpl implements UserRentService {
         return Result.success();
     }
     
-    public void insertPayment(Date begin,Date end,String userId,String HouseId,Integer houseCast){
+    public void insertPayment(Date begin, Date end, String userId, String HouseId, BigDecimal houseCast){
         Payment payment = new Payment();
         payment.setUserId(userId);
         payment.setHouseId(HouseId);
         payment.setPayFlag(false);
-        payment.setPayMoney(0);
+        payment.setPayMoney(BigDecimal.valueOf(0));
         payment.setHouseCast(houseCast);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(begin);

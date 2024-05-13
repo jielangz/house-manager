@@ -1,5 +1,6 @@
 package com.house.housemanager.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -562,52 +563,52 @@ public class UserRentExample {
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostEqualTo(Integer value) {
+        public Criteria andHouseCostEqualTo(BigDecimal value) {
             addCriterion("house_cost =", value, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostNotEqualTo(Integer value) {
+        public Criteria andHouseCostNotEqualTo(BigDecimal value) {
             addCriterion("house_cost <>", value, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostGreaterThan(Integer value) {
+        public Criteria andHouseCostGreaterThan(BigDecimal value) {
             addCriterion("house_cost >", value, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostGreaterThanOrEqualTo(Integer value) {
+        public Criteria andHouseCostGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("house_cost >=", value, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostLessThan(Integer value) {
+        public Criteria andHouseCostLessThan(BigDecimal value) {
             addCriterion("house_cost <", value, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostLessThanOrEqualTo(Integer value) {
+        public Criteria andHouseCostLessThanOrEqualTo(BigDecimal value) {
             addCriterion("house_cost <=", value, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostIn(List<Integer> values) {
+        public Criteria andHouseCostIn(List<BigDecimal> values) {
             addCriterion("house_cost in", values, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostNotIn(List<Integer> values) {
+        public Criteria andHouseCostNotIn(List<BigDecimal> values) {
             addCriterion("house_cost not in", values, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostBetween(Integer value1, Integer value2) {
+        public Criteria andHouseCostBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("house_cost between", value1, value2, "houseCost");
             return (Criteria) this;
         }
 
-        public Criteria andHouseCostNotBetween(Integer value1, Integer value2) {
+        public Criteria andHouseCostNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("house_cost not between", value1, value2, "houseCost");
             return (Criteria) this;
         }
