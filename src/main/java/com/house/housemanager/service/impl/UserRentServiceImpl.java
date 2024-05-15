@@ -136,6 +136,7 @@ public class UserRentServiceImpl implements UserRentService {
         payment.setHouseCast(houseCast);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(begin);
+        int count = 0;
         // 一个月为一期房租，每月月底作为缴纳截至日期
         while (calendar.getTime().before(end)) {
             calendar.add(Calendar.MONTH, 1);
@@ -146,6 +147,7 @@ public class UserRentServiceImpl implements UserRentService {
             payment.setPayId(UUID.randomUUID().toString().replace("-", ""));
             payment.setPayLimitDate(date);
             paymentMapper.insert(payment);
+            count++;
         }
     }
 }

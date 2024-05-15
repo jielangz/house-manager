@@ -146,6 +146,10 @@ public class HouseVo {
         return otherDetails;
     }
     
+    public BigDecimal getHouseCast() {
+        return houseCast;
+    }
+    
     public void setOtherDetails(String otherDetails) {
         this.otherDetails = otherDetails;
     }
@@ -153,4 +157,6 @@ public class HouseVo {
     public void setHouseCast(BigDecimal houseCast) {
         this.houseCast = houseCast;
     }
+    
+    
 }

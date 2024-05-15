@@ -140,4 +140,8 @@ public class InsertHouseVo {
     public void setOtherDetails(String otherDetails) {
         this.otherDetails = otherDetails;
     }
+    
+    public BigDecimal getHouseCast() {
+        return houseCast;
+    }
 }

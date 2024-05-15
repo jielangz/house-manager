@@ -37,8 +37,8 @@
                             targetPackage="com.house.housemanager.model"/>
 
         <!-- mapper xml生成的位置 -->
-        <sqlMapGenerator targetProject="src/main/resources/com/house/housemanager/mapper"
-                         targetPackage="mappers"/>
+        <sqlMapGenerator targetProject="src/main/resources/com/house/housemanager"
+                         targetPackage="mapper"/>
 
         <!-- dao 类生成的位置 -->
         <javaClientGenerator targetProject="src/main/java"

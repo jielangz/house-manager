@@ -58,13 +58,13 @@ public class SMSUtils {
 		}
 	}
 	
-	public static void sendMessage(String param) throws Exception {
+	public static void sendMessage(String name,String phone) throws Exception {
 		com.aliyun.dysmsapi20170525.Client client = createClient();
-		String param1 = "{\"name\":\""+param+"\"}";
+		String param1 = "{\"name\":\""+name+"\"}";
 		com.aliyun.dysmsapi20170525.models.SendSmsRequest sendSmsRequest = new com.aliyun.dysmsapi20170525.models.SendSmsRequest()
 				.setSignName("租客管理")
 				.setTemplateCode("SMS_465980975")
-				.setPhoneNumbers("15279569296")
+				.setPhoneNumbers(phone)
 				.setTemplateParam(param1);
 		com.aliyun.teautil.models.RuntimeOptions runtime = new com.aliyun.teautil.models.RuntimeOptions();
 		try {

@@ -41,9 +41,12 @@ public class HouseServiceImpl implements HouseService {
         if (!ObjectUtils.isEmpty(getHouseVo.getRentFlag())){
             criteria.andRentFlagEqualTo(getHouseVo.getRentFlag());
         }
+        List<HouseVo> houseVoList = new ArrayList<>();
         List<House> houses = houseMapper.selectByExample(houseExample);
+        if(ObjectUtils.isEmpty(houses)){
+            return PageInfo.of(houseVoList);
+        }
         List<String> houseIdList = houses.stream().map(House::getHouseId).collect(Collectors.toList());
-        
         HouseDetailsExample houseDetailsExample = new HouseDetailsExample();
         houseDetailsExample.createCriteria().andHouseIdIn(houseIdList);
         List<HouseDetails> houseDetailsList = houseDetailsMapper.selectByExample(houseDetailsExample);
@@ -53,7 +56,7 @@ public class HouseServiceImpl implements HouseService {
         paymentExample.createCriteria().andPayFlagEqualTo(false).andPayLimitDateLessThan(new Date());
         List<Payment> paymentList = paymentMapper.selectByExample(paymentExample);
         Map<String,Boolean> map = paymentList.stream().collect(Collectors.toMap(Payment::getHouseId,Payment::getPayFlag));
-        List<HouseVo> houseVoList = new ArrayList<>();
+        
         for (House house : houses) {
             HouseVo houseVo = new HouseVo();
             BeanUtils.copyProperties(house,houseVo);
@@ -70,6 +73,7 @@ public class HouseServiceImpl implements HouseService {
                 houseVo.setClosetFlag(houseDetails.getClosetFlag());
                 houseVo.setRoomNumber(houseDetails.getRoomNumber());
                 houseVo.setOtherDetails(houseDetails.getOtherDetails());
+                houseVo.setRestRoomFlag(houseDetails.getRestRoomFlag());
             }
             houseVoList.add(houseVo);
         }
